@@ -10,29 +10,37 @@ class MagicBallScreen extends StatefulWidget {
 }
 
 class _MagicBallTap extends State<MagicBallScreen> {
-  PredictionData predictionData = PredictionData(reading: "");
-  String prediction = "";
-  bool shadow = false;
-  bool textOpacity = true;
+  PredictionData predictionData = PredictionData(reading: ""); // Data класс с предсказаниями
+  String prediction = ""; // Текс предсказания
+  bool shadow = false; // Тень у шара
+  bool red = false;
+  bool textOpacity = true; // Исчезновение текста
 
-  void _setPrediction() {
+  void _setPrediction() { // Обновление предсказания и появление текста
     setState(() {
-      prediction = predictionData.reading;
-      textOpacity = true;
+      if (predictionData.reading != "") {
+        prediction = predictionData.reading;
+        textOpacity = true;
+      } else {
+        shadow = false;
+        red = true;
+      }
+
     });
   }
 
-  void _tapBall() {
+  void _tapBall() { // Обработка тапа
     setState(() {
-      shadow = true;
-      textOpacity = false;
+      shadow = true; // Затенение шара
+      red = false;
+      textOpacity = false; // Исчезновение текста
     });
-    _getData();
+    _getData(); // Запрос api
   }
 
   void _getData() async {
-    predictionData = (await ApiService().getPrediction())!;
-    Future.delayed(const Duration(milliseconds: 500))
+    predictionData = (await ApiService().getPrediction())!; // Запроса api через класс ApiService
+    Future.delayed(const Duration(milliseconds: 500)) // Задержка в 500 мс для имитации загрузки
         .then((value) => _setPrediction());
   }
 
@@ -42,7 +50,7 @@ class _MagicBallTap extends State<MagicBallScreen> {
       resizeToAvoidBottomInset: false,
       body: Stack(
         children: [
-          Container(
+          Container( // Градиент
             decoration: const BoxDecoration(
                 gradient: LinearGradient(
                     begin: Alignment.bottomCenter,
@@ -52,16 +60,16 @@ class _MagicBallTap extends State<MagicBallScreen> {
                   Color.fromRGBO(16, 12, 44, 1),
                 ])),
           ),
-          GestureDetector(
+          GestureDetector( // Виджет с обработкой нажатий
             onTap: _tapBall,
             child: Stack(
               children: [
-                Container(
+                Container( //Шаром
                   alignment: Alignment.center,
                   padding: const EdgeInsets.all(24.0),
                   child: Image.asset("image/ball_idle.png"),
                 ),
-                AnimatedOpacity(
+                AnimatedOpacity( // Тень шара
                     opacity: shadow ? 1.0 : 0.0,
                     duration: const Duration(milliseconds: 500),
                     child: Container(
@@ -70,7 +78,16 @@ class _MagicBallTap extends State<MagicBallScreen> {
                       child: Image.asset("image/ball_shadow.png"),
                     ),
                 ),
-                AnimatedOpacity(
+                AnimatedOpacity( // Красный шар
+                  opacity: red ? 1.0 : 0.0,
+                  duration: const Duration(milliseconds: 500),
+                  child: Container(
+                    alignment: Alignment.center,
+                    padding: const EdgeInsets.all(24.0),
+                    child: Image.asset("image/ball_red.png"),
+                  ),
+                ),
+                AnimatedOpacity( // Текст в шаре
                     opacity: textOpacity ? 1.0 : 0.0,
                     duration: const Duration(milliseconds: 250),
                   child: Container(
@@ -87,12 +104,12 @@ class _MagicBallTap extends State<MagicBallScreen> {
               ],
             ),
           ),
-          Container(
+          Container( // Тень шара
             alignment: Alignment.bottomCenter,
             padding: const EdgeInsets.all(65.0),
             child: Image.asset("image/shadow.png"),
           ),
-          Container(
+          Container( // Надпись снизу
               alignment: Alignment.bottomCenter,
               padding: const EdgeInsets.only(left: 80, right: 80, bottom: 6),
               child: RichText(

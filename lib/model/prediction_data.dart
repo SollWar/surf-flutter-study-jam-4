@@ -3,10 +3,9 @@ import 'dart:convert';
 PredictionData predictionDataFromJson(String str) => PredictionData.fromJson(json.decode(str));
 String predictionDataToJson(PredictionData data) => json.encode(data.toJson());
 
-class PredictionData {
-  static String baseUrl = 'https://www.eightballapi.com';
-  static String apiEndpoint = '/api';
-  String reading;
+class PredictionData { // Data класс предсказаний, генерировался через app.quicktype.io
+
+  String reading; // Значение предсказания
 
   PredictionData({
     required this.reading,
