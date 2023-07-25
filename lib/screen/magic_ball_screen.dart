@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:shake/shake.dart';
 import 'package:surf_practice_magic_ball/api/api_service.dart';
 import 'package:surf_practice_magic_ball/model/prediction_data.dart';
 
@@ -7,16 +8,26 @@ class MagicBallScreen extends StatefulWidget {
 
   @override
   State<MagicBallScreen> createState() => _MagicBallTap();
+
 }
 
 class _MagicBallTap extends State<MagicBallScreen> {
+  @override
+  void initState() {
+    super.initState();
+    ShakeDetector.autoStart(onPhoneShake: () {
+      _tapBall();
+    });
+  }
+
   PredictionData predictionData = PredictionData(reading: ""); // Data класс с предсказаниями
   String prediction = ""; // Текс предсказания
   bool shadow = false; // Тень у шара
   bool red = false;
   bool textOpacity = true; // Исчезновение текста
 
-  void _setPrediction() { // Обновление предсказания и появление текста
+  void _setPrediction() {
+    // Обновление предсказания и появление текста
     setState(() {
       if (predictionData.reading != "") {
         prediction = predictionData.reading;
@@ -25,11 +36,11 @@ class _MagicBallTap extends State<MagicBallScreen> {
         shadow = false;
         red = true;
       }
-
     });
   }
 
-  void _tapBall() { // Обработка тапа
+  void _tapBall() {
+    // Обработка тапа
     setState(() {
       shadow = true; // Затенение шара
       red = false;
@@ -39,8 +50,10 @@ class _MagicBallTap extends State<MagicBallScreen> {
   }
 
   void _getData() async {
-    predictionData = (await ApiService().getPrediction())!; // Запроса api через класс ApiService
-    Future.delayed(const Duration(milliseconds: 500)) // Задержка в 500 мс для имитации загрузки
+    predictionData = (await ApiService()
+        .getPrediction())!; // Запроса api через класс ApiService
+    Future.delayed(const Duration(
+            milliseconds: 500)) // Задержка в 500 мс для имитации загрузки
         .then((value) => _setPrediction());
   }
 
@@ -50,7 +63,8 @@ class _MagicBallTap extends State<MagicBallScreen> {
       resizeToAvoidBottomInset: false,
       body: Stack(
         children: [
-          Container( // Градиент
+          Container(
+            // Градиент
             decoration: const BoxDecoration(
                 gradient: LinearGradient(
                     begin: Alignment.bottomCenter,
@@ -60,25 +74,29 @@ class _MagicBallTap extends State<MagicBallScreen> {
                   Color.fromRGBO(16, 12, 44, 1),
                 ])),
           ),
-          GestureDetector( // Виджет с обработкой нажатий
+          GestureDetector(
+            // Виджет с обработкой нажатий
             onTap: _tapBall,
             child: Stack(
               children: [
-                Container( //Шаром
+                Container(
+                  //Шаром
                   alignment: Alignment.center,
                   padding: const EdgeInsets.all(24.0),
                   child: Image.asset("image/ball_idle.png"),
                 ),
-                AnimatedOpacity( // Тень шара
-                    opacity: shadow ? 1.0 : 0.0,
-                    duration: const Duration(milliseconds: 500),
-                    child: Container(
-                      alignment: Alignment.center,
-                      padding: const EdgeInsets.all(24.0),
-                      child: Image.asset("image/ball_shadow.png"),
-                    ),
+                AnimatedOpacity(
+                  // Тень шара
+                  opacity: shadow ? 1.0 : 0.0,
+                  duration: const Duration(milliseconds: 500),
+                  child: Container(
+                    alignment: Alignment.center,
+                    padding: const EdgeInsets.all(24.0),
+                    child: Image.asset("image/ball_shadow.png"),
+                  ),
                 ),
-                AnimatedOpacity( // Красный шар
+                AnimatedOpacity(
+                  // Красный шар
                   opacity: red ? 1.0 : 0.0,
                   duration: const Duration(milliseconds: 500),
                   child: Container(
@@ -87,9 +105,10 @@ class _MagicBallTap extends State<MagicBallScreen> {
                     child: Image.asset("image/ball_red.png"),
                   ),
                 ),
-                AnimatedOpacity( // Текст в шаре
-                    opacity: textOpacity ? 1.0 : 0.0,
-                    duration: const Duration(milliseconds: 250),
+                AnimatedOpacity(
+                  // Текст в шаре
+                  opacity: textOpacity ? 1.0 : 0.0,
+                  duration: const Duration(milliseconds: 250),
                   child: Container(
                       alignment: Alignment.center,
                       padding: const EdgeInsets.all(24.0),
@@ -104,12 +123,14 @@ class _MagicBallTap extends State<MagicBallScreen> {
               ],
             ),
           ),
-          Container( // Тень шара
+          Container(
+            // Тень шара
             alignment: Alignment.bottomCenter,
             padding: const EdgeInsets.all(65.0),
             child: Image.asset("image/shadow.png"),
           ),
-          Container( // Надпись снизу
+          Container(
+              // Надпись снизу
               alignment: Alignment.bottomCenter,
               padding: const EdgeInsets.only(left: 80, right: 80, bottom: 6),
               child: RichText(
