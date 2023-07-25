@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:surf_practice_magic_ball/model/sample_data.dart';
+import 'package:surf_practice_magic_ball/api/api_service.dart';
+import 'package:surf_practice_magic_ball/model/prediction_data.dart';
 
 class MagicBallScreen extends StatefulWidget {
   const MagicBallScreen({Key? key}) : super(key: key);
@@ -10,14 +11,18 @@ class MagicBallScreen extends StatefulWidget {
 
 class _MagicBallTap extends State<MagicBallScreen> {
 
-  SampleData reading = SampleData("");
+  PredictionData predictionData = PredictionData(reading: "");
   String prediction = "";
 
-  void _incrementCounter() {
+  void _setPrediction() {
     setState(() {
-      reading.newSample();
-      prediction = reading.reading;
+      prediction = predictionData.reading;
     });
+  }
+
+  void _getData() async {
+    predictionData = (await ApiService().getPrediction())!;
+    Future.delayed(const Duration(seconds: 1)).then((value) => _setPrediction());
   }
 
   @override
@@ -37,7 +42,7 @@ class _MagicBallTap extends State<MagicBallScreen> {
                     ])),
           ),
           GestureDetector(
-            onTap: _incrementCounter,
+            onTap: _getData,
               child: Container(
                 alignment: Alignment.center,
                 padding: const EdgeInsets.all(24.0),
