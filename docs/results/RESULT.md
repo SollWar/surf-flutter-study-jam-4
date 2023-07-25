@@ -14,10 +14,10 @@ Android
 
 # Ссылки на демонстрацию работы/скриншоты
 
-|<img src="https://github.com/SollWar/surf-flutter-study-jam-4/blob/main/docs/results/gif.gif" width="220">|
-|<img src="https://github.com/SollWar/surf-flutter-study-jam-4/blob/main/docs/results/scr1.jpg" width="220">|
-|<img src="https://github.com/SollWar/surf-flutter-study-jam-4/blob/main/docs/results/scr2.jpg" width="220">|
-|<img src="https://github.com/SollWar/surf-flutter-study-jam-4/blob/main/docs/results/scr3.jpg" width="220">| <br/>
+|<img src="https://github.com/SollWar/surf-flutter-study-jam-4/blob/study-jam-4/docs/results/gif.gif" width="220">|
+|<img src="https://github.com/SollWar/surf-flutter-study-jam-4/blob/study-jam-4/docs/results/scr1.jpg" width="220">|
+|<img src="https://github.com/SollWar/surf-flutter-study-jam-4/blob/study-jam-4/docs/results/scr2.jpg" width="220">|
+|<img src="https://github.com/SollWar/surf-flutter-study-jam-4/blob/study-jam-4/docs/results/scr3.jpg" width="220">| <br/>
 
 # PS
 Flutter установил буквально вчера, изучал и делал задание одновременно. До этого год назад писал диплом на Android, но на Kotlin. <br/>
