@@ -33,7 +33,7 @@ class _MagicBallTap extends State<MagicBallScreen> {
         prediction = predictionData.reading;
         textOpacity = true;
       } else {
-        shadow = false;
+        shadow = true;
         red = true;
       }
     });
@@ -91,7 +91,7 @@ class _MagicBallTap extends State<MagicBallScreen> {
                   duration: const Duration(milliseconds: 500),
                   child: Container(
                     alignment: Alignment.center,
-                    padding: const EdgeInsets.all(24.0),
+                    padding: const EdgeInsets.all(48.0),
                     child: Image.asset("image/ball_shadow.png"),
                   ),
                 ),
@@ -101,7 +101,7 @@ class _MagicBallTap extends State<MagicBallScreen> {
                   duration: const Duration(milliseconds: 500),
                   child: Container(
                     alignment: Alignment.center,
-                    padding: const EdgeInsets.all(24.0),
+                    padding: const EdgeInsets.all(48.0),
                     child: Image.asset("image/ball_red.png"),
                   ),
                 ),
@@ -123,12 +123,36 @@ class _MagicBallTap extends State<MagicBallScreen> {
               ],
             ),
           ),
-          Container(
-            // Тень шара
-            alignment: Alignment.bottomCenter,
-            padding: const EdgeInsets.all(65.0),
-            child: Image.asset("image/shadow.png"),
+          AnimatedOpacity(
+            opacity: textOpacity ? 1.0 : 0.5,
+            duration: const Duration(milliseconds: 250),
+            child: Container(
+              // Внешняя тень шара
+              alignment: Alignment.bottomCenter,
+              padding: const EdgeInsets.all(65.0),
+              child: Image.asset("image/shadow_back.png"),
+            ),
           ),
+          AnimatedOpacity(
+            opacity: shadow ? 0.0 : 1.0,
+            duration: const Duration(milliseconds: 250),
+            child: Container(
+              // Внутренняя тень шара
+              alignment: Alignment.bottomCenter,
+              padding: const EdgeInsets.all(65.0),
+              child: Image.asset("image/shadow_center.png"),
+            ),
+          ),
+          AnimatedOpacity(
+              opacity: red ? 1.0 : 0.0,
+              duration: const Duration(milliseconds: 500),
+              child: Container(
+                // Красная тень шара
+                alignment: Alignment.bottomCenter,
+                padding: const EdgeInsets.all(65.0),
+                child: Image.asset("image/shadow_error.png"),
+              ),
+            ),
           Container(
               // Надпись снизу
               alignment: Alignment.bottomCenter,
