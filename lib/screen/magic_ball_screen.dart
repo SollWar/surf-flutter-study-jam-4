@@ -8,22 +8,37 @@ class MagicBallScreen extends StatefulWidget {
 
   @override
   State<MagicBallScreen> createState() => _MagicBallTap();
-
 }
 
 class _MagicBallTap extends State<MagicBallScreen> {
+  // Переменные для AnimatedContainer
+  double curAnimBall = 23;
+  double minAnimBall = 23;
+  double maxAnimBall = 43;
+
+  double curAnimShadow = 65;
+  double minAnimShadow = 65;
+  double maxAnimShadow = 85;
+
   @override
   void initState() {
     super.initState();
     ShakeDetector.autoStart(onPhoneShake: () {
       _tapBall();
     });
+    Future.delayed(Duration(milliseconds: 10), () { // Старт анимации
+      setState(() {
+        curAnimBall = maxAnimBall;
+        curAnimShadow = maxAnimShadow;
+      });
+    });
   }
 
-  PredictionData predictionData = PredictionData(reading: ""); // Data класс с предсказаниями
+  PredictionData predictionData =
+      PredictionData(reading: ""); // Data класс с предсказаниями
   String prediction = ""; // Текс предсказания
-  bool shadow = false; // Тень у шара
-  bool red = false;
+  bool shadow = false; // Тень в шаре
+  bool red = false; // Красная тень
   bool textOpacity = true; // Исчезновение текста
 
   void _setPrediction() {
@@ -43,7 +58,7 @@ class _MagicBallTap extends State<MagicBallScreen> {
     // Обработка тапа
     setState(() {
       shadow = true; // Затенение шара
-      red = false;
+      red = false; // Выключение красной тени
       textOpacity = false; // Исчезновение текста
     });
     _getData(); // Запрос api
@@ -74,85 +89,107 @@ class _MagicBallTap extends State<MagicBallScreen> {
                   Color.fromRGBO(16, 12, 44, 1),
                 ])),
           ),
-          GestureDetector(
-            // Виджет с обработкой нажатий
-            onTap: _tapBall,
+          AnimatedContainer(
+            duration: Duration(seconds: 2),
+            padding: EdgeInsets.fromLTRB(23, 23, 23, curAnimBall),
+            curve: Curves.decelerate,
+            onEnd: () {
+              setState(() {
+                curAnimBall =
+                    curAnimBall != maxAnimBall ? maxAnimBall : minAnimBall;
+              });
+            },
+            child: GestureDetector(
+              // Виджет с обработкой нажатий
+              onTap: _tapBall,
+              child: Stack(
+                children: [
+                  Container(
+                    //Шар
+                    alignment: Alignment.center,
+                    child: Image.asset("assets/image/ball_idle.png"),
+                  ),
+                  AnimatedOpacity(
+                    // Тень шара
+                    opacity: shadow & !red ? 1.0 : 0.0,
+                    duration: const Duration(milliseconds: 500),
+                    child: Container(
+                      alignment: Alignment.center,
+                      padding: EdgeInsets.all(10),
+                      child: Image.asset("assets/image/ball_shadow.png"),
+                    ),
+                  ),
+                  AnimatedOpacity(
+                    // Красный шар
+                    opacity: red ? 0.8 : 0.0,
+                    duration: const Duration(milliseconds: 500),
+                    child: Container(
+                      alignment: Alignment.center,
+                      padding: EdgeInsets.all(10),
+                      child: Image.asset("assets/image/ball_red.png"),
+                    ),
+                  ),
+                  AnimatedOpacity(
+                    // Текст в шаре
+                    opacity: textOpacity ? 1.0 : 0.0,
+                    duration: const Duration(milliseconds: 250),
+                    child: Container(
+                        alignment: Alignment.center,
+                        child: RichText(
+                          text: TextSpan(
+                              text: prediction,
+                              style: const TextStyle(
+                                  color: Colors.white, fontSize: 16)),
+                          textAlign: TextAlign.center,
+                        )),
+                  )
+                ],
+              ),
+            ),
+          ),
+          AnimatedContainer(
+            duration: Duration(seconds: 2),
+            padding: EdgeInsets.fromLTRB(curAnimShadow, 65, curAnimShadow, 65),
+            curve: Curves.decelerate,
+            onEnd: () {
+              setState(() {
+                curAnimShadow = curAnimShadow != minAnimShadow
+                    ? minAnimShadow
+                    : maxAnimShadow;
+              });
+            },
             child: Stack(
               children: [
-                Container(
-                  //Шар
-                  alignment: Alignment.center,
-                  padding: const EdgeInsets.all(24.0),
-                  child: Image.asset("assets/image/ball_idle.png"),
-                ),
                 AnimatedOpacity(
-                  // Тень шара
-                  opacity: shadow & !red ? 1.0 : 0.0,
-                  duration: const Duration(milliseconds: 500),
-                  child: Container(
-                    alignment: Alignment.center,
-                    padding: const EdgeInsets.all(48.0),
-                    child: Image.asset("assets/image/ball_shadow.png"),
-                  ),
-                ),
-                AnimatedOpacity(
-                  // Красный шар
-                  opacity: red ? 0.8 : 0.0,
-                  duration: const Duration(milliseconds: 500),
-                  child: Container(
-                    alignment: Alignment.center,
-                    padding: const EdgeInsets.all(48.0),
-                    child: Image.asset("assets/image/ball_red.png"),
-                  ),
-                ),
-                AnimatedOpacity(
-                  // Текст в шаре
-                  opacity: textOpacity ? 1.0 : 0.0,
+                  opacity: textOpacity ? 1.0 : 0.5,
                   duration: const Duration(milliseconds: 250),
                   child: Container(
-                      alignment: Alignment.center,
-                      padding: const EdgeInsets.all(24.0),
-                      child: RichText(
-                        text: TextSpan(
-                            text: prediction,
-                            style: const TextStyle(
-                                color: Colors.white, fontSize: 16)),
-                        textAlign: TextAlign.center,
-                      )),
-                )
+                    // Внешняя тень шара
+                    alignment: Alignment.bottomCenter,
+                    child: Image.asset("assets/image/shadow_back.png"),
+                  ),
+                ),
+                AnimatedOpacity(
+                  opacity: shadow ? 0.0 : 1.0,
+                  duration: const Duration(milliseconds: 250),
+                  child: Container(
+                    // Внутренняя тень шара
+                    alignment: Alignment.bottomCenter,
+                    child: Image.asset("assets/image/shadow_center.png"),
+                  ),
+                ),
+                AnimatedOpacity(
+                  opacity: red ? 1.0 : 0.0,
+                  duration: const Duration(milliseconds: 500),
+                  child: Container(
+                    // Красная тень шара
+                    alignment: Alignment.bottomCenter,
+                    child: Image.asset("assets/image/shadow_error.png"),
+                  ),
+                ),
               ],
             ),
           ),
-          AnimatedOpacity(
-            opacity: textOpacity ? 1.0 : 0.5,
-            duration: const Duration(milliseconds: 250),
-            child: Container(
-              // Внешняя тень шара
-              alignment: Alignment.bottomCenter,
-              padding: const EdgeInsets.all(65.0),
-              child: Image.asset("assets/image/shadow_back.png"),
-            ),
-          ),
-          AnimatedOpacity(
-            opacity: shadow ? 0.0 : 1.0,
-            duration: const Duration(milliseconds: 250),
-            child: Container(
-              // Внутренняя тень шара
-              alignment: Alignment.bottomCenter,
-              padding: const EdgeInsets.all(65.0),
-              child: Image.asset("assets/image/shadow_center.png"),
-            ),
-          ),
-          AnimatedOpacity(
-              opacity: red ? 1.0 : 0.0,
-              duration: const Duration(milliseconds: 500),
-              child: Container(
-                // Красная тень шара
-                alignment: Alignment.bottomCenter,
-                padding: const EdgeInsets.all(65.0),
-                child: Image.asset("assets/image/shadow_error.png"),
-              ),
-            ),
           Container(
               // Надпись снизу
               alignment: Alignment.bottomCenter,
