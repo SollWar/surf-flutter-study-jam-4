@@ -1,0 +1,12 @@
+com.example.surf_practice_chat_flutter.app-jetified-window-java-1.0.0-beta04-0 C:\Users\Sollw\.gradle\caches\transforms-3\4d7a90eb7b858d3a543a3d16b4fc84e7\transformed\jetified-window-java-1.0.0-beta04\res
+com.example.surf_practice_chat_flutter.app-core-1.6.0-1 C:\Users\Sollw\.gradle\caches\transforms-3\5b6a47406f3c5ee736c56cef8350e60f\transformed\core-1.6.0\res
+com.example.surf_practice_chat_flutter.app-jetified-annotation-experimental-1.1.0-2 C:\Users\Sollw\.gradle\caches\transforms-3\6bc9288b841ebc4671cf947c6fd00e3f\transformed\jetified-annotation-experimental-1.1.0\res
+com.example.surf_practice_chat_flutter.app-jetified-window-1.0.0-beta04-3 C:\Users\Sollw\.gradle\caches\transforms-3\b3b72fdb4155540aeef8480c2d605883\transformed\jetified-window-1.0.0-beta04\res
+com.example.surf_practice_chat_flutter.app-debug-4 C:\Users\Sollw\AndroidStudioProjects\surf-flutter-study-jam-4\android\app\src\debug\res
+com.example.surf_practice_chat_flutter.app-main-5 C:\Users\Sollw\AndroidStudioProjects\surf-flutter-study-jam-4\android\app\src\main\res
+com.example.surf_practice_chat_flutter.app-pngs-6 C:\Users\Sollw\AndroidStudioProjects\surf-flutter-study-jam-4\build\app\generated\res\pngs\debug
+com.example.surf_practice_chat_flutter.app-resValues-7 C:\Users\Sollw\AndroidStudioProjects\surf-flutter-study-jam-4\build\app\generated\res\resValues\debug
+com.example.surf_practice_chat_flutter.app-rs-8 C:\Users\Sollw\AndroidStudioProjects\surf-flutter-study-jam-4\build\app\generated\res\rs\debug
+com.example.surf_practice_chat_flutter.app-mergeDebugResources-9 C:\Users\Sollw\AndroidStudioProjects\surf-flutter-study-jam-4\build\app\intermediates\incremental\debug\mergeDebugResources\merged.dir
+com.example.surf_practice_chat_flutter.app-mergeDebugResources-10 C:\Users\Sollw\AndroidStudioProjects\surf-flutter-study-jam-4\build\app\intermediates\incremental\debug\mergeDebugResources\stripped.dir
+com.example.surf_practice_chat_flutter.app-merged_res-11 C:\Users\Sollw\AndroidStudioProjects\surf-flutter-study-jam-4\build\app\intermediates\merged_res\debug
