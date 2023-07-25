@@ -10,3 +10,4 @@ com.example.surf_practice_chat_flutter.app-rs-8 C:\Users\Sollw\AndroidStudioProj
 com.example.surf_practice_chat_flutter.app-mergeDebugResources-9 C:\Users\Sollw\AndroidStudioProjects\surf-flutter-study-jam-4\build\app\intermediates\incremental\debug\mergeDebugResources\merged.dir
 com.example.surf_practice_chat_flutter.app-mergeDebugResources-10 C:\Users\Sollw\AndroidStudioProjects\surf-flutter-study-jam-4\build\app\intermediates\incremental\debug\mergeDebugResources\stripped.dir
 com.example.surf_practice_chat_flutter.app-merged_res-11 C:\Users\Sollw\AndroidStudioProjects\surf-flutter-study-jam-4\build\app\intermediates\merged_res\debug
+com.example.surf_practice_chat_flutter.app-packaged_res-12 C:\Users\Sollw\AndroidStudioProjects\surf-flutter-study-jam-4\build\sensors_plus\intermediates\packaged_res\debug

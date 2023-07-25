@@ -22,8 +22,8 @@
 18        android:debuggable="true"
 19        android:icon="@mipmap/ic_launcher"
 19-->C:\Users\Sollw\AndroidStudioProjects\surf-flutter-study-jam-4\android\app\src\main\AndroidManifest.xml:5:9-43
-20        android:label="surf_practice_chat_flutter" >
-20-->C:\Users\Sollw\AndroidStudioProjects\surf-flutter-study-jam-4\android\app\src\main\AndroidManifest.xml:4:9-51
+20        android:label="Magic Ball" >
+20-->C:\Users\Sollw\AndroidStudioProjects\surf-flutter-study-jam-4\android\app\src\main\AndroidManifest.xml:4:9-35
 21        <activity
 21-->C:\Users\Sollw\AndroidStudioProjects\surf-flutter-study-jam-4\android\app\src\main\AndroidManifest.xml:6:9-34:20
 22            android:name="com.example.surf_practice_chat_flutter.MainActivity"

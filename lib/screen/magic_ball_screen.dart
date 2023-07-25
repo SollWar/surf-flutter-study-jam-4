@@ -80,29 +80,29 @@ class _MagicBallTap extends State<MagicBallScreen> {
             child: Stack(
               children: [
                 Container(
-                  //Шаром
+                  //Шар
                   alignment: Alignment.center,
                   padding: const EdgeInsets.all(24.0),
-                  child: Image.asset("image/ball_idle.png"),
+                  child: Image.asset("assets/image/ball_idle.png"),
                 ),
                 AnimatedOpacity(
                   // Тень шара
-                  opacity: shadow ? 1.0 : 0.0,
+                  opacity: shadow & !red ? 1.0 : 0.0,
                   duration: const Duration(milliseconds: 500),
                   child: Container(
                     alignment: Alignment.center,
                     padding: const EdgeInsets.all(48.0),
-                    child: Image.asset("image/ball_shadow.png"),
+                    child: Image.asset("assets/image/ball_shadow.png"),
                   ),
                 ),
                 AnimatedOpacity(
                   // Красный шар
-                  opacity: red ? 1.0 : 0.0,
+                  opacity: red ? 0.8 : 0.0,
                   duration: const Duration(milliseconds: 500),
                   child: Container(
                     alignment: Alignment.center,
                     padding: const EdgeInsets.all(48.0),
-                    child: Image.asset("image/ball_red.png"),
+                    child: Image.asset("assets/image/ball_red.png"),
                   ),
                 ),
                 AnimatedOpacity(
@@ -130,7 +130,7 @@ class _MagicBallTap extends State<MagicBallScreen> {
               // Внешняя тень шара
               alignment: Alignment.bottomCenter,
               padding: const EdgeInsets.all(65.0),
-              child: Image.asset("image/shadow_back.png"),
+              child: Image.asset("assets/image/shadow_back.png"),
             ),
           ),
           AnimatedOpacity(
@@ -140,7 +140,7 @@ class _MagicBallTap extends State<MagicBallScreen> {
               // Внутренняя тень шара
               alignment: Alignment.bottomCenter,
               padding: const EdgeInsets.all(65.0),
-              child: Image.asset("image/shadow_center.png"),
+              child: Image.asset("assets/image/shadow_center.png"),
             ),
           ),
           AnimatedOpacity(
@@ -150,7 +150,7 @@ class _MagicBallTap extends State<MagicBallScreen> {
                 // Красная тень шара
                 alignment: Alignment.bottomCenter,
                 padding: const EdgeInsets.all(65.0),
-                child: Image.asset("image/shadow_error.png"),
+                child: Image.asset("assets/image/shadow_error.png"),
               ),
             ),
           Container(

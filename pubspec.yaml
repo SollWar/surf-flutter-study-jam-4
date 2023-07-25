@@ -20,6 +20,12 @@ dependencies:
 dev_dependencies:
   flutter_test:
     sdk: flutter
+  flutter_launcher_icons: ^0.9.0
+
+flutter_icons:
+  image_path: "assets/image/launcher_ico.png"
+  android: true
+  ios: true
 
   flutter_lints: ^2.0.1
 flutter:
@@ -27,9 +33,4 @@ flutter:
   uses-material-design: true
 
   assets:
-    - image/ball_idle.png
-    - image/shadow_center.png
-    - image/ball_shadow.png
-    - image/ball_red.png
-    - image/shadow_back.png
-    - image/shadow_error.png
+    - assets/image/

@@ -51,7 +51,7 @@ MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.1] C:\Users\So
 	android:appComponentFactory
 		ADDED from [androidx.core:core:1.6.0] C:\Users\Sollw\.gradle\caches\transforms-3\5b6a47406f3c5ee736c56cef8350e60f\transformed\core-1.6.0\AndroidManifest.xml:24:18-86
 	android:label
-		ADDED from C:\Users\Sollw\AndroidStudioProjects\surf-flutter-study-jam-4\android\app\src\main\AndroidManifest.xml:4:9-51
+		ADDED from C:\Users\Sollw\AndroidStudioProjects\surf-flutter-study-jam-4\android\app\src\main\AndroidManifest.xml:4:9-35
 	android:icon
 		ADDED from C:\Users\Sollw\AndroidStudioProjects\surf-flutter-study-jam-4\android\app\src\main\AndroidManifest.xml:5:9-43
 activity#com.example.surf_practice_chat_flutter.MainActivity
